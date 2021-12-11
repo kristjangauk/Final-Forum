@@ -3,6 +3,7 @@ package com.example.finalforum.controllers;
 
 import com.example.finalforum.entities.Answer;
 import com.example.finalforum.entities.Topic;
+import com.example.finalforum.entities.User;
 import com.example.finalforum.repositories.AnswerRepository;
 import com.example.finalforum.repositories.TopicRepository;
 import com.example.finalforum.repositories.UserRepository;
@@ -40,6 +41,19 @@ public class TopicsController {
         model.addAttribute("header", header);
         model.addAttribute("answerRepository", answerRepository);
         return "/topics";
+    }
+
+    @PostMapping("user/save")
+    public String addAnswer(@RequestParam("username") String username,
+                            @RequestParam("password") String password
+    ) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setCreatedDate(LocalDateTime.now());
+
+        userRepository.save(user);
+        return "redirect:/";
     }
 
     @PostMapping("topics/save")

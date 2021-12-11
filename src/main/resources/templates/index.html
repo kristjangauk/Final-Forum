@@ -23,7 +23,22 @@
                 <h1 class="flow-text center">Software tools</h1>
                 <p class="center">IntelliJ IDEA, Maven, MySQL</p>
             </div>
-            <div><a th:href="@{'/topics'}">Topics</a></div>
+            <a th:href="@{'/topics'}">Topics</a>
+            <section>
+                <div>
+                    <form th:action="@{/user/save}" method="post">
+                        <label>create user</label><br>
+                        <input type="text" placeholder="Enter username" name="username" required><br>
+                        <label>password</label><br>
+                        <input type="password" placeholder="Enter password" name="password" required><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
+            </section>
+            
+
+
         </section>
     </article>
 </main>
