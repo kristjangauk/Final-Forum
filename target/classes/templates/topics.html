@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/online">
 <head>
     <title>Topics | JF</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
 <main layout:fragment="content">
@@ -35,7 +37,7 @@
                             <td th:text="${topic.displayParsedCreatedDate()}">Topic's created date</td>
                             <td>
                                 <a th:href="@{'/topic/' + ${topic.getId()}}" class="btn btn-floating pulse">
-                                    <i class="material-icons">arrow_forward</i>
+                                    <i class="bi bi-arrow-right-square"></i>
                                 </a>
                             </td>
                         </tr>
