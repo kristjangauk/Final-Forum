@@ -1,27 +1,35 @@
 package com.example.finalforum.controllers;
 
 
+import com.example.finalforum.entities.Answer;
 import com.example.finalforum.entities.Topic;
 import com.example.finalforum.repositories.AnswerRepository;
 import com.example.finalforum.repositories.TopicRepository;
+import com.example.finalforum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TopicsController {
 
     private final TopicRepository topicRepository;
     private final AnswerRepository answerRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public TopicsController(TopicRepository topicRepository, AnswerRepository answerRepository) {
+    public TopicsController(TopicRepository topicRepository, AnswerRepository answerRepository, UserRepository userRepository) {
         this.topicRepository = topicRepository;
         this.answerRepository = answerRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("topics")
@@ -31,8 +39,33 @@ public class TopicsController {
         model.addAttribute("topics", topics);
         model.addAttribute("header", header);
         model.addAttribute("answerRepository", answerRepository);
-        return "topics";
+        return "/topics";
     }
+
+    @PostMapping("topics/save")
+    public String addAnswer(@RequestParam("title") String title,
+                          @RequestParam("content") String content,
+                          @RequestParam("category") String category,
+                          @RequestParam("code") String code,
+                          @RequestParam("id_user") String id_user,
+                          HttpServletRequest request) {
+        Topic topic = new Topic();
+        topic.setTitle(title);
+
+        if (Objects.equals(code, ""))
+            topic.setCode(null);
+        else
+            topic.setCode(code);
+        topic.setContent(content);
+        topic.setCategory(category);
+        topic.setCreatedDate(LocalDateTime.now());
+        topic.setUser(userRepository.getUserById(Long.parseLong(id_user)));
+
+        topicRepository.save(topic);
+        return "redirect:/topics";
+    }
+
+
 
     @GetMapping("topics/{category}")
     public String displayTopicsByCategory(@PathVariable String category, Model model) {
