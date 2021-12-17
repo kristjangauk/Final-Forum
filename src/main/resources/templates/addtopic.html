@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Topic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<section class="container">
+    <header class="row">
+        <div class="col s12">
+            <blockquote class="flow-text left" th:text="|Add Topic: |">Add answer</blockquote>
+        </div>
+    </header>
+    <div>
+        <form th:action="@{'/topics/save'}" method="post">
+            <label>Title</label><br>
+            <input type="text" placeholder="Enter Title" name="title" required><br>
+            <label>Content</label><br>
+            <textarea class="materialize-textarea" placeholder="Enter Content" name="content" required></textarea><br>
+            <label>Category</label><br>
+            <input type="text" placeholder="Enter category" name="category"><br>
+            <label>Code</label><br>
+            <textarea class="materialize-textarea" placeholder="Enter Code" name="code"></textarea><br>
+            <label>User Id</label><br>
+            <input type="text" placeholder="User ID" name="id_user" required><br>
+
+            <div><button type="submit" class="btn">Submit</button> <a th:href="@{'/topics'}" class="btn">Back</a></div>
+        </form>
+    </div>
+
+
+</section>
+
+</body>
+</html>

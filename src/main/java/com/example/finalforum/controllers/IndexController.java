@@ -10,4 +10,9 @@ public class IndexController {
     public String displayIndex() {
         return "index";
     }
+
+    @GetMapping("/addtopic")
+    public String addTopic() {
+        return "/addtopic";
+    }
 }
