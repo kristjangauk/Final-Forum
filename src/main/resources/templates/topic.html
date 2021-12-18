@@ -68,6 +68,14 @@
                             <button class="chip left" style="background-color: #37b7ab;">Delete</button>
                         </form>
                     </span>
+                <span>
+                        <form th:action="@{/topic/{topic.getId()}}" method="post">
+                            <input type="hidden" name="id_answer" th:value="${answer.getId()}"/>
+                            <input type="hidden" name="action" th:value="update"/>
+                            <input type="hidden" name="id_topic" th:value="${topic.getId()}"/>
+                            <button class="chip left" style="background-color: #37b7ab;">Update</button>
+                        </form>
+                    </span>
                 <div class="row">
                     <p class="col s12" style="text-align: justify; display:block; white-space:pre-wrap"
                        th:text="${answer.getContent()}">
@@ -113,13 +121,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 center">
+                    <div class="col s12">
                         <button class="btn" type="submit" name="answer">Answer</button>
+                        <a th:href="@{'/topics'}" class="btn">Back</a>
                     </div>
                 </div>
             </form>
         </section>
-        <div><a th:href="@{'/topics'}">Topics</a></div>
     </article>
 </main>
 <!--@thymesVar id="getTitle" type="com.example.finalforum.entities.Topic"*-->
