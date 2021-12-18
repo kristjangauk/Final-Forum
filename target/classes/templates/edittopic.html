@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<section class="container">
+    <header class="row">
+        <div class="col s12">
+            <blockquote class="flow-text left" th:text="|Edit aswer: |">Edit answer</blockquote>
+        </div>
+    </header>
+    <form th:action="@{/update}" method="post" th:object="${answer}">
+        <div class="row">
+            <div class="col s12">
+                <label>Content:
+                    <textarea th:field="*{content}" name="content" class="materialize-textarea" minlength="5" maxlength="1024"
+                              data-length="1024" required="required"></textarea>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <label>Code:
+                    <textarea name="code" class="materialize-textarea" placeholder="[optional]"
+                              style="font-family: monospace, monospace;" maxlength="1024" data-length="1024"></textarea>
+                </label>
+            </div>
+        </div>
+
+        <input type="hidden" name="id" th:field="*{id}">
+        <input type="hidden" name="created_date" th:field="*{createdDate}">
+        <input type="hidden" name="id_topic" th:field="*{topic.id}">
+        <input type="hidden" name="id_user" th:field="*{user.id}">
+        <div class="row">
+            <div class="col s12">
+                <button class="btn" type="submit" name="answer">Update</button>
+                <a th:href="@{'/topics'}" class="btn">Back</a>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

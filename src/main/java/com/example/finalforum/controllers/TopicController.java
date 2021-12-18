@@ -10,10 +10,9 @@ import com.example.finalforum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
@@ -36,6 +35,18 @@ public class TopicController {
         this.userRepository = userRepository;
         this.topicRepository = topicRepository;
         this.answerRepository = answerRepository;
+    }
+
+    @RequestMapping(value= "/topic/edit/{id}", method = RequestMethod.GET)
+    public String editAnswer(@PathVariable("id") Long id, ModelMap model ) {
+        model.put("answer", answerRepository.findById(id));
+        return "/edittopic";
+    }
+
+    @RequestMapping(value="/update",method=RequestMethod.POST)
+    public String updateTopic(@ModelAttribute("answer") Answer answer, BindingResult result, ModelMap model) {
+        answerRepository.save(answer);
+        return "redirect:/topics";
     }
 
     @GetMapping("topic/{id}")
