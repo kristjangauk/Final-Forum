@@ -49,15 +49,11 @@ public class TopicController {
 
     @GetMapping("topic/{id}")
     public String displayTopic(@PathVariable String id,  Model model) {
-//        String username = User.getUsername();
-//        Long idUser = userRepository.getUserByUsername(username).getId();
-
         Topic topic = topicRepository.findTopicById(Long.valueOf(id));
         List<Answer> answers = answerRepository.findAnswerByTopic_Id(Long.valueOf(id));
 
         model.addAttribute("topic", topic);
         model.addAttribute("answers", answers);
-//        model.addAttribute("idUser", idUser);
         return "topic";
     }
 
@@ -83,7 +79,6 @@ public class TopicController {
         Answer answer = new Answer();
         answer.setContent(content);
 
-        // I know that it can be blank field, but I did it on purpose to find out about Optionals:
         if (Objects.equals(code, ""))
             answer.setCode(null);
         else

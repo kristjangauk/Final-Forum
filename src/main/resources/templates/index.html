@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/offline">
 <head>
-    <title>Home page | JF</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 <main layout:fragment="content">
     <article class="container">
         <header class="row">
-            <div class="col s12">
-                <h1 class="flow-text center">Description</h1>
-                <p class="center">
-                    Internet forum [in this case about programming language Java] powered by Spring Framework and MySQL.This web application
-                    enables inter alia: adding topics and answers, as well as browsing, editing or deleting some of them.</p>
-            </div>
+
         </header>
         <section class="row">
             <div class="col s12">
-                <h1 class="flow-text center">Technologies</h1>
-                <p class="center">Java 17 Standard Edition, Spring MVC, Spring Data, Spring Boot, JPA/Hibernate,
-                    HTML (Themyleaf), CSS (Materialize)</p>
-                <h1 class="flow-text center">Software tools</h1>
-                <p class="center">IntelliJ IDEA, Maven, MySQL</p>
+                <p class="conteiner">First you need to create a few users. Then click Topics</p>
+
+                <p class="center"><a th:href="@{'/topics'}" class="btn">Topics</a></p>
             </div>
-            <a th:href="@{'/topics'}">Topics</a>
+
             <section>
                 <div>
                     <form th:action="@{/user/save}" method="post">
@@ -31,7 +24,7 @@
                         <input type="text" placeholder="Enter username" name="username" required><br>
                         <label>password</label><br>
                         <input type="password" placeholder="Enter password" name="password" required><br>
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="btn">Create user</button>
                     </form>
                 </div>
 

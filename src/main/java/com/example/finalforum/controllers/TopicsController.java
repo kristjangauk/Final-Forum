@@ -1,7 +1,5 @@
 package com.example.finalforum.controllers;
 
-
-import com.example.finalforum.entities.Answer;
 import com.example.finalforum.entities.Topic;
 import com.example.finalforum.entities.User;
 import com.example.finalforum.repositories.AnswerRepository;
@@ -11,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
