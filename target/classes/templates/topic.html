@@ -15,9 +15,9 @@
         </header>
         <section class="row">
             <div class="col s12">
-                <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">
+
                     <span class="chip left" th:text="${topic.getUser().getUsername()}">Topic's author</span>
-                </a>
+
                 <a th:href="@{'/topics/' + ${topic.getCategory()}}">
                     <span class="chip left" th:text="${topic.getCategory()}" style="background-color: #ee6e73;">Category</span>
                 </a>
@@ -42,11 +42,11 @@
                         background: -webkit-linear-gradient(left, #e7e4e4, #f3f2f2);
                         background: -o-linear-gradient(right, #e7e4e4, #f3f2f2);
                         background: -moz-linear-gradient(right, #e7e4e4, #f3f2f2);">
-                <a th:href="@{'/profile/' + ${answer.getUser().getId()}}">
+
                         <span class="chip left" style="background-color: #f3f2f2;" th:text="${answer.getUser().getUsername()}">
                             Answer's author
                         </span>
-                </a>
+
                 <span class="chip left" th:if="${answer.isUseful()}" th:text="|Useful|" style="background-color: #ee6e73;">
                         Useful
                     </span>

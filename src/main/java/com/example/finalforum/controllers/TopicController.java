@@ -1,9 +1,7 @@
 package com.example.finalforum.controllers;
 
-
 import com.example.finalforum.entities.Answer;
 import com.example.finalforum.entities.Topic;
-import com.example.finalforum.entities.User;
 import com.example.finalforum.repositories.AnswerRepository;
 import com.example.finalforum.repositories.TopicRepository;
 import com.example.finalforum.repositories.UserRepository;
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -45,8 +42,9 @@ public class TopicController {
 
     @RequestMapping(value="/update",method=RequestMethod.POST)
     public String updateTopic(@ModelAttribute("answer") Answer answer, BindingResult result, ModelMap model) {
+        Long topicId = answer.getTopic().getId();
         answerRepository.save(answer);
-        return "redirect:/topics";
+        return "redirect:/topic/" + topicId;
     }
 
     @GetMapping("topic/{id}")
